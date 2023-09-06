@@ -2,16 +2,19 @@ from flask import Flask, request, render_template
 from bs4 import BeautifulSoup as bs
 from urllib.request import urlopen as uReq
 import requests
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 
 
 @app.route('/', methods=['GET'])
+@cross_origin()
 def home_page():
     return render_template("index.html")
 
 
 @app.route('/review', methods=['POST', 'GET'])
+@cross_origin()
 def index():
     if request.method == 'POST':
         try:
